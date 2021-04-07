@@ -1,0 +1,27 @@
+sconnexion = "Driver={SQL Server};Server=sql-pruebas;Database=sofiap;Uid=;Pwd=;"
+
+lcString = Sqlstringconnect(sconnexion)
+
+IF lcString < 0
+       Vtipo=2
+         titulo="Error"
+         msj="Disculpe, baja conexión por favor"+CHR(13)+"consulte al desarrollador"
+         
+       RETURN
+ENDIF
+ySuccess=SQLEXEC(lcString,"exec master.dbo.BACKUPDATAB")
+IF ySuccess < 0 then
+ Vtipo=2
+ titulo="Error"
+ msj="Disculpe, ha ocurrido un problema,"+CHR(13)+"comuniquese con el desarrollador"
+ 
+ELSE
+ Vtipo=3
+ titulo=".::SAM::. Mensaje"
+ msj="El respalde se realizó con éxito"
+* DO FORM mensaje
+ 	a="C:\Program Files\Microsoft SQL Server\MSSQL\BACKUP\"
+
+ COPY FILE (a) TO ("c:\bppc\")
+
+ ENDIF 

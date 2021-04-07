@@ -1,0 +1,6 @@
+Vpn_blanco=(256^3)-1
+	IF Vpn_color>Vpn_blanco/2
+		this.Parent.txt1.ForeColor= 0
+	ELSE
+		this.Parent.txt1.ForeColor=INT(Vpn_blanco)
+	ENDIF 

@@ -1,0 +1,14 @@
+Texto = strtran(tMilMillones + tMillones + tMiles + tCientos, '  ', ' 
+Error in line 63: Command contains unrecognized phrase/keyword.
+') + ' PESOS'
+Error in line 64: Unrecognized command verb.
+Return Texto + iif(!empty(Total), ' CON ' + strtran(transform(int((total - 
+Error in line 67: Missing operand.
+int(total)) * 100), '**'), '*', '0') + '/100 M.N.', '')
+Error in line 68: Syntax error.
+tDecenas = iif(val(right(str(valor,3),2)) >= 10 and
+Error in line 87: Missing operand.
+val(right(str(valor,3),2)) <= 15, aDecenas(val(right(str(valor,3),2)) - 9),
+Error in line 88: Syntax error.
+'DIECI' + tUnidades)
+Error in line 89: Unrecognized command verb.

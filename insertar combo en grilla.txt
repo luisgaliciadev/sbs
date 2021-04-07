@@ -1,0 +1,19 @@
+WITH this.container1.pestanas1.page1.grilla1.Column5
+	.Width=100
+	.Header1.Caption="Almacen"
+	.Header1.Alignment=2
+	.Sparse=.F.
+	.RemoveObject('Text1')
+	.AddObject('Combo1','ComboBox')
+	.CurrentControl="Combo1"
+	.Combo1.RowSourceType=6
+	.Combo1.ColumnCount=2
+	.Combo1.ColumnWidths="100,0"
+	.Combo1.ColumnLines=.F.
+	.Combo1.RowSource="almacen.nombre,cod_alma"
+	.Combo1.BoundColumn=2
+	*.Combo1.BoundTo=.T.
+	.Combo1.Visible=.T.	
+	.Combo1.style=2
+	.ReadOnly=.F.
+ENDWITH

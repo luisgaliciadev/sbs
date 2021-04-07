@@ -1,0 +1,70 @@
+SELECT Bl.ID_BL, Bl.COD_BL, Bl.COD_BL_MASTER, Deta_bl.COD_CONTE,;
+  Deta_bl.NUM_DR, Deta_bl.CARGA_NETA, Deta_bl.CARGA_COMP, Deta_bl.IMO,;
+  Deta_bl.CANT_PIEZAS;
+ FROM ;
+     dbo.BL Bl ;
+    INNER JOIN dbo.DETA_BL Deta_bl ;
+   ON  Bl.ID_BL = Deta_bl.COD_BL;
+ WHERE  Bl.COD_BL_MASTER <> ( '' );
+   AND  Bl.FG_ACTIVO = ( 1 )
+
+DBSetProp(ThisView,"View","SendUpdates",.F.)
+DBSetProp(ThisView,"View","BatchUpdateCount",1)
+DBSetProp(ThisView,"View","CompareMemo",.T.)
+DBSetProp(ThisView,"View","FetchAsNeeded",.F.)
+DBSetProp(ThisView,"View","FetchMemo",.T.)
+DBSetProp(ThisView,"View","FetchSize",10000)
+DBSetProp(ThisView,"View","MaxRecords",-1)
+DBSetProp(ThisView,"View","Prepared",.F.)
+DBSetProp(ThisView,"View","ShareConnection",.F.)
+DBSetProp(ThisView,"View","AllowSimultaneousFetch",.F.)
+DBSetProp(ThisView,"View","UpdateType",1)
+DBSetProp(ThisView,"View","UseMemoSize",255)
+DBSetProp(ThisView,"View","Tables","dbo.BL,dbo.DETA_BL")
+DBSetProp(ThisView,"View","WhereType",3)
+
+DBSetProp(ThisView+".id_bl","Field","DataType","N(20)")
+DBSetProp(ThisView+".id_bl","Field","UpdateName","dbo.BL.ID_BL")
+DBSetProp(ThisView+".id_bl","Field","KeyField",.T.)
+DBSetProp(ThisView+".id_bl","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".cod_bl","Field","DataType","C(20)")
+DBSetProp(ThisView+".cod_bl","Field","UpdateName","dbo.BL.COD_BL")
+DBSetProp(ThisView+".cod_bl","Field","KeyField",.F.)
+DBSetProp(ThisView+".cod_bl","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".cod_bl_master","Field","DataType","C(20)")
+DBSetProp(ThisView+".cod_bl_master","Field","UpdateName","dbo.BL.COD_BL_MASTER")
+DBSetProp(ThisView+".cod_bl_master","Field","KeyField",.F.)
+DBSetProp(ThisView+".cod_bl_master","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".cod_conte","Field","DataType","C(20)")
+DBSetProp(ThisView+".cod_conte","Field","UpdateName","dbo.DETA_BL.COD_CONTE")
+DBSetProp(ThisView+".cod_conte","Field","KeyField",.F.)
+DBSetProp(ThisView+".cod_conte","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".num_dr","Field","DataType","C(20)")
+DBSetProp(ThisView+".num_dr","Field","UpdateName","dbo.DETA_BL.NUM_DR")
+DBSetProp(ThisView+".num_dr","Field","KeyField",.F.)
+DBSetProp(ThisView+".num_dr","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".carga_neta","Field","DataType","N(20,2)")
+DBSetProp(ThisView+".carga_neta","Field","UpdateName","dbo.DETA_BL.CARGA_NETA")
+DBSetProp(ThisView+".carga_neta","Field","KeyField",.F.)
+DBSetProp(ThisView+".carga_neta","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".carga_comp","Field","DataType","N(20,2)")
+DBSetProp(ThisView+".carga_comp","Field","UpdateName","dbo.DETA_BL.CARGA_COMP")
+DBSetProp(ThisView+".carga_comp","Field","KeyField",.F.)
+DBSetProp(ThisView+".carga_comp","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".imo","Field","DataType","C(20)")
+DBSetProp(ThisView+".imo","Field","UpdateName","dbo.DETA_BL.IMO")
+DBSetProp(ThisView+".imo","Field","KeyField",.F.)
+DBSetProp(ThisView+".imo","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".cant_piezas","Field","DataType","N(20,2)")
+DBSetProp(ThisView+".cant_piezas","Field","UpdateName","dbo.DETA_BL.CANT_PIEZAS")
+DBSetProp(ThisView+".cant_piezas","Field","KeyField",.F.)
+DBSetProp(ThisView+".cant_piezas","Field","Updatable",.T.)
+

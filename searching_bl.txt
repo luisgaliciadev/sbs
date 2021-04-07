@@ -1,0 +1,169 @@
+SELECT Bl.ID_BL, Bl.COD_BL, Bl.COD_BL_MASTER, Deta_bl.COD_CONTE,;
+  Bl.PAIS_ORIGEN, Pais.nb_pais, Bl.PTO_CARGA, Puertos.nb_puerto,;
+  Bl.PTO_DESCARGA, Bl.COD_BUQUE, Buques.NB_BUQUE, Bl.PTO_DESCARGA,;
+  Puertos_a.nb_puerto, Bl.NRO_VIAJE, Bl.FG_ACTIVO, Bl.FG_DESCONSOLIDADO,;
+  Bl.COD_CONSIG, Consignatarios.NB_PROVEED_BENEF, Bl.linea_naviera,;
+  Consignatarios_a.NB_PROVEED_BENEF, Bl.NUM_VIAJE, Bl.tipo_carga,;
+  Deta_bl.NUM_DR, Deta_bl.ESTADO, Atraques.FECHA_HORA_REAL_ATRAQUE;
+ FROM ;
+     dbo.BL Bl ;
+    INNER JOIN dbo.DETA_BL Deta_bl ;
+   ON  Bl.ID_BL = Deta_bl.COD_BL ;
+    INNER JOIN dbo.atraques Atraques ;
+   ON  Bl.COD_BUQUE = Atraques.ID_BUQUE;
+   AND  Bl.NRO_VIAJE = Atraques.NRO_VIAJE ;
+    INNER JOIN dbo.consignatarios Consignatarios_a ;
+   ON  Bl.linea_naviera = Consignatarios_a.ID_BENEFICIARIO ;
+    INNER JOIN dbo.consignatarios Consignatarios ;
+   ON  Bl.COD_CONSIG = Consignatarios.ID_BENEFICIARIO ;
+    INNER JOIN dbo.puertos Puertos_a ;
+   ON  Bl.PTO_DESCARGA = Puertos_a.id_puerto ;
+    INNER JOIN dbo.buques Buques ;
+   ON  Bl.COD_BUQUE = Buques.ID_BUQUE ;
+    INNER JOIN dbo.puertos Puertos ;
+   ON  Bl.PTO_CARGA = Puertos.id_puerto ;
+    INNER JOIN dbo.pais Pais ;
+   ON  Bl.PAIS_ORIGEN = Pais.Expr1;
+ WHERE  Bl.FG_ACTIVO = 1;
+ ORDER BY Bl.tipo_carga
+
+DBSetProp(ThisView,"View","SendUpdates",.F.)
+DBSetProp(ThisView,"View","BatchUpdateCount",1)
+DBSetProp(ThisView,"View","CompareMemo",.T.)
+DBSetProp(ThisView,"View","FetchAsNeeded",.F.)
+DBSetProp(ThisView,"View","FetchMemo",.T.)
+DBSetProp(ThisView,"View","FetchSize",100000)
+DBSetProp(ThisView,"View","MaxRecords",-1)
+DBSetProp(ThisView,"View","Prepared",.F.)
+DBSetProp(ThisView,"View","ShareConnection",.F.)
+DBSetProp(ThisView,"View","AllowSimultaneousFetch",.F.)
+DBSetProp(ThisView,"View","UpdateType",1)
+DBSetProp(ThisView,"View","UseMemoSize",255)
+DBSetProp(ThisView,"View","Tables","dbo.BL")
+DBSetProp(ThisView,"View","WhereType",3)
+
+DBSetProp(ThisView+".id_bl","Field","DataType","N(20)")
+DBSetProp(ThisView+".id_bl","Field","UpdateName","dbo.BL.ID_BL")
+DBSetProp(ThisView+".id_bl","Field","KeyField",.T.)
+DBSetProp(ThisView+".id_bl","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".cod_bl","Field","DataType","C(20)")
+DBSetProp(ThisView+".cod_bl","Field","UpdateName","dbo.BL.COD_BL")
+DBSetProp(ThisView+".cod_bl","Field","KeyField",.F.)
+DBSetProp(ThisView+".cod_bl","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".cod_bl_master","Field","DataType","C(20)")
+DBSetProp(ThisView+".cod_bl_master","Field","UpdateName","dbo.BL.COD_BL_MASTER")
+DBSetProp(ThisView+".cod_bl_master","Field","KeyField",.F.)
+DBSetProp(ThisView+".cod_bl_master","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".cod_conte","Field","DataType","C(20)")
+DBSetProp(ThisView+".cod_conte","Field","UpdateName","dbo.DETA_BL.COD_CONTE")
+DBSetProp(ThisView+".cod_conte","Field","KeyField",.F.)
+DBSetProp(ThisView+".cod_conte","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".pais_origen","Field","DataType","N(20)")
+DBSetProp(ThisView+".pais_origen","Field","UpdateName","dbo.BL.PAIS_ORIGEN")
+DBSetProp(ThisView+".pais_origen","Field","KeyField",.F.)
+DBSetProp(ThisView+".pais_origen","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".nb_pais","Field","DataType","C(200)")
+DBSetProp(ThisView+".nb_pais","Field","UpdateName","dbo.pais.nb_pais")
+DBSetProp(ThisView+".nb_pais","Field","KeyField",.F.)
+DBSetProp(ThisView+".nb_pais","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".pto_carga","Field","DataType","N(20)")
+DBSetProp(ThisView+".pto_carga","Field","UpdateName","dbo.BL.PTO_CARGA")
+DBSetProp(ThisView+".pto_carga","Field","KeyField",.F.)
+DBSetProp(ThisView+".pto_carga","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".nb_puerto","Field","DataType","C(200)")
+DBSetProp(ThisView+".nb_puerto","Field","UpdateName","dbo.puertos.nb_puerto")
+DBSetProp(ThisView+".nb_puerto","Field","KeyField",.F.)
+DBSetProp(ThisView+".nb_puerto","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".pto_descarga","Field","DataType","N(20)")
+DBSetProp(ThisView+".pto_descarga","Field","UpdateName","dbo.BL.PTO_DESCARGA")
+DBSetProp(ThisView+".pto_descarga","Field","KeyField",.F.)
+DBSetProp(ThisView+".pto_descarga","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".cod_buque","Field","DataType","N(20)")
+DBSetProp(ThisView+".cod_buque","Field","UpdateName","dbo.BL.COD_BUQUE")
+DBSetProp(ThisView+".cod_buque","Field","KeyField",.F.)
+DBSetProp(ThisView+".cod_buque","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".nb_buque","Field","DataType","C(80)")
+DBSetProp(ThisView+".nb_buque","Field","UpdateName","dbo.buques.NB_BUQUE")
+DBSetProp(ThisView+".nb_buque","Field","KeyField",.F.)
+DBSetProp(ThisView+".nb_buque","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".pto_descarga1","Field","DataType","N(20)")
+DBSetProp(ThisView+".pto_descarga1","Field","UpdateName","dbo.BL.PTO_DESCARGA")
+DBSetProp(ThisView+".pto_descarga1","Field","KeyField",.F.)
+DBSetProp(ThisView+".pto_descarga1","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".nb_puerto1","Field","DataType","C(200)")
+DBSetProp(ThisView+".nb_puerto1","Field","UpdateName","dbo.puertos.nb_puerto")
+DBSetProp(ThisView+".nb_puerto1","Field","KeyField",.F.)
+DBSetProp(ThisView+".nb_puerto1","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".nro_viaje","Field","DataType","I")
+DBSetProp(ThisView+".nro_viaje","Field","UpdateName","dbo.BL.NRO_VIAJE")
+DBSetProp(ThisView+".nro_viaje","Field","KeyField",.F.)
+DBSetProp(ThisView+".nro_viaje","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".fg_activo","Field","DataType","L")
+DBSetProp(ThisView+".fg_activo","Field","UpdateName","dbo.BL.FG_ACTIVO")
+DBSetProp(ThisView+".fg_activo","Field","KeyField",.F.)
+DBSetProp(ThisView+".fg_activo","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".fg_desconsolidado","Field","DataType","L")
+DBSetProp(ThisView+".fg_desconsolidado","Field","UpdateName","dbo.BL.FG_DESCONSOLIDADO")
+DBSetProp(ThisView+".fg_desconsolidado","Field","KeyField",.F.)
+DBSetProp(ThisView+".fg_desconsolidado","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".cod_consig","Field","DataType","N(20)")
+DBSetProp(ThisView+".cod_consig","Field","UpdateName","dbo.BL.COD_CONSIG")
+DBSetProp(ThisView+".cod_consig","Field","KeyField",.F.)
+DBSetProp(ThisView+".cod_consig","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".nb_proveed_benef","Field","DataType","C(150)")
+DBSetProp(ThisView+".nb_proveed_benef","Field","UpdateName","dbo.consignatarios.NB_PROVEED_BENEF")
+DBSetProp(ThisView+".nb_proveed_benef","Field","KeyField",.F.)
+DBSetProp(ThisView+".nb_proveed_benef","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".linea_naviera","Field","DataType","N(20)")
+DBSetProp(ThisView+".linea_naviera","Field","UpdateName","dbo.BL.linea_naviera")
+DBSetProp(ThisView+".linea_naviera","Field","KeyField",.F.)
+DBSetProp(ThisView+".linea_naviera","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".nb_proveed_benef1","Field","DataType","C(150)")
+DBSetProp(ThisView+".nb_proveed_benef1","Field","UpdateName","dbo.consignatarios.NB_PROVEED_BENEF")
+DBSetProp(ThisView+".nb_proveed_benef1","Field","KeyField",.F.)
+DBSetProp(ThisView+".nb_proveed_benef1","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".num_viaje","Field","DataType","C(20)")
+DBSetProp(ThisView+".num_viaje","Field","UpdateName","dbo.BL.NUM_VIAJE")
+DBSetProp(ThisView+".num_viaje","Field","KeyField",.F.)
+DBSetProp(ThisView+".num_viaje","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".tipo_carga","Field","DataType","I")
+DBSetProp(ThisView+".tipo_carga","Field","UpdateName","dbo.BL.tipo_carga")
+DBSetProp(ThisView+".tipo_carga","Field","KeyField",.F.)
+DBSetProp(ThisView+".tipo_carga","Field","Updatable",.T.)
+
+DBSetProp(ThisView+".num_dr","Field","DataType","C(20)")
+DBSetProp(ThisView+".num_dr","Field","UpdateName","dbo.DETA_BL.NUM_DR")
+DBSetProp(ThisView+".num_dr","Field","KeyField",.F.)
+DBSetProp(ThisView+".num_dr","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".estado","Field","DataType","I")
+DBSetProp(ThisView+".estado","Field","UpdateName","dbo.DETA_BL.ESTADO")
+DBSetProp(ThisView+".estado","Field","KeyField",.F.)
+DBSetProp(ThisView+".estado","Field","Updatable",.F.)
+
+DBSetProp(ThisView+".fecha_hora_real_atraque","Field","DataType","T")
+DBSetProp(ThisView+".fecha_hora_real_atraque","Field","UpdateName","dbo.atraques.FECHA_HORA_REAL_ATRAQUE")
+DBSetProp(ThisView+".fecha_hora_real_atraque","Field","KeyField",.F.)
+DBSetProp(ThisView+".fecha_hora_real_atraque","Field","Updatable",.F.)
+
